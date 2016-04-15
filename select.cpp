@@ -2,6 +2,7 @@
 //  select.cpp
 //
 //  Created by Olivier Cuisenaire on 10.04.15.
+//  Modified by Lara Chauffoureaux
 //  Copyright (c) 2015 Olivier Cuisenaire. All rights reserved.
 //
 

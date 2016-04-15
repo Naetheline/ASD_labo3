@@ -3,7 +3,9 @@
 //
 //  Created by Olivier Cuisenaire on 10.04.15.
 //  Copyright (c) 2015 Olivier Cuisenaire. All rights reserved.
-//
+// 
+//  Modifié par Nathalie Mégevand
+//  15.04.2016
 
 #include <iostream>
 #include <utility>
@@ -25,14 +27,20 @@ using namespace std;
 // E: C
 // où E est l'élément et C le compte.
 //
-// A COMPLETER
+// Ecrit par Nathalie Mégevand
 
 template < typename RandomAccessIterator >
 void countingSort( RandomAccessIterator begin,
                   RandomAccessIterator end )
 {
    
-    // A COMPLETER
+    // Détermination MIN et MAX
+
+
+    // Comptage
+
+
+    // Affichage des éléments non vide
 
 }
 
