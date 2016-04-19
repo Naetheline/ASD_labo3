@@ -33,15 +33,38 @@ template < typename RandomAccessIterator >
 void countingSort( RandomAccessIterator begin,
                   RandomAccessIterator end )
 {
-   
-    // Détermination MIN et MAX
+  RandomAccessIterator posMin = begin;
+  RandomAccessIterator posMax = begin;
 
+  // Détermination MIN et MAX
+  for(auto i = begin; i != end; i++)
+    {
+      if(*i < *posMin)
+	{
+	  posMin = i;
+	}
+      else if(*i > *posMax)
+	{
+	  posMax = i;
+	}
+    }
+  const unsigned int TAILLE = *posMax - *posMin + 1;
+  unsigned int tabCompte[TAILLE]
+  // Comptage
+    for(auto i = begin; i != end; i++)
+      {
+	tabCompte[*i]++;
+      }
 
-    // Comptage
-
-
-    // Affichage des éléments non vide
-
+  // Affichage des éléments non vide
+  for(unsigned int i = 0; i < TAILLE; i++)
+    {
+      if(tabCompte[i] != 0)
+	{
+	  std::cout << i + *posMin << " : " << tabCompte[i] << std::endl;
+	}
+    }
+  
 }
 
 // display
