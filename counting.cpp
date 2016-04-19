@@ -34,42 +34,42 @@ template < typename RandomAccessIterator >
 void countingSort( RandomAccessIterator begin,
                   RandomAccessIterator end )
 {
-  RandomAccessIterator posMin = begin;
-  RandomAccessIterator posMax = begin;
+  auto min = *begin;
+  auto max = *begin;
 
   // Détermination MIN et MAX
   for(auto i = begin; i != end; i++)
     {
-      if(*i < *posMin)
+      if(*i < min)
 	{
-	  posMin = i;
+	  min = *i;
 	}
-      else if(*i > *posMax)
+      else if(*i > max)
 	{
-	  posMax = i;
+	  max = *i;
 	}
     }
-  const unsigned int TAILLE = *posMax - *posMin + 1;
+  const unsigned int TAILLE = max - min + 1;
   std::vector<unsigned int> tabCompte;
   tabCompte.resize(TAILLE);
 
   // Comptage
     for(auto i = begin; i != end; i++)
       {
-	tabCompte[*i - *posMin]++;
+	tabCompte.at(*i - min)++;
       }
 
    // Tri du tableau Avec affichage simultané
      unsigned int k = 0;
      for(unsigned int i = 0; i < TAILLE; i++)
       {
-	for(unsigned int j = 0; j < tabCompte[i]; j++)
+	for(unsigned int j = 0; j < tabCompte.at(i); j++)
          {
-           *(begin + k++) = i + *posMin;
+           *(begin + k++) = i + min;
          }
-         if(tabCompte[i] > 0)
+	if(tabCompte.at(i) > 0)
          {
-           std::cout << *(begin + k - 1) << ": " << tabCompte[i] << std::endl;
+           std::cout << *(begin + k - 1) << ": " << tabCompte.at(i) << std::endl;
           }
       }
 }
