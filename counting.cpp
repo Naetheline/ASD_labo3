@@ -12,6 +12,7 @@
 #include <climits>
 #include <vector>
 #include <string>
+#include <array>
 
 using namespace std;
 
@@ -49,22 +50,28 @@ void countingSort( RandomAccessIterator begin,
 	}
     }
   const unsigned int TAILLE = *posMax - *posMin + 1;
-  unsigned int tabCompte[TAILLE]
+  std::vector<unsigned int> tabCompte;
+  tabCompte.resize(TAILLE);
+
   // Comptage
     for(auto i = begin; i != end; i++)
       {
-	tabCompte[*i]++;
+	tabCompte[*i - *posMin]++;
       }
 
-  // Affichage des éléments non vide
-  for(unsigned int i = 0; i < TAILLE; i++)
-    {
-      if(tabCompte[i] != 0)
-	{
-	  std::cout << i + *posMin << " : " << tabCompte[i] << std::endl;
-	}
-    }
-  
+   // Tri du tableau Avec affichage simultané
+     unsigned int k = 0;
+     for(unsigned int i = 0; i < TAILLE; i++)
+      {
+	for(unsigned int j = 0; j < tabCompte[i]; j++)
+         {
+           *(begin + k++) = i + *posMin;
+         }
+         if(tabCompte[i] > 0)
+         {
+           std::cout << *(begin + k - 1) << ": " << tabCompte[i] << std::endl;
+          }
+      }
 }
 
 // display
