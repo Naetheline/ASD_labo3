@@ -13,6 +13,7 @@
  * Un tri par comptage
  */
 
+#include <utility>
 
 // Tri par sélection
 template <typename RandomAccessIterator>
@@ -27,13 +28,29 @@ void quickSort(RandomAccessIterator begin, RandomAccessIterator end);
 template <typename RandomAccessIterator>
 void countingSort(RandomAccessIterator begin, RandomAccessIterator end);
 
-
-
 // IMPLEMENTATION DES TRIS
 
-
-
-
+template < typename RandomAccessIterator >
+void selectionSort( RandomAccessIterator begin,
+                   RandomAccessIterator end )
+{   
+   for(auto i = begin; i < end - 1; i++)
+   {
+      RandomAccessIterator iMin = i;
+      
+      for(auto j = i + 1; j < end; j++)
+      {
+         if(*j < *iMin)
+         {
+            iMin = j;
+         }
+      }
+      if(iMin != i)
+      {
+         std::swap(*i, *iMin);
+      }
+   }
+}
 
 template < typename RandomAccessIterator >
 void countingSort( RandomAccessIterator begin,

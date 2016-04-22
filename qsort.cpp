@@ -1,15 +1,16 @@
 //
 //  qsort.cpp
-//
+//  
 //  Created by Olivier Cuisenaire on 10.04.15.
 //  Copyright (c) 2015 Olivier Cuisenaire. All rights reserved.
-//
+// modified by Lemdjo
 
 #include <iostream>
 #include <utility>
 #include <climits>
 #include <vector>
 #include <string>
+#include <algorithm>
 
 using namespace std;
 
@@ -24,22 +25,21 @@ using namespace std;
 // NE RIEN MODIFIER DANS CETTE FONCTION
 
 template < typename RandomAccessIterator >
-RandomAccessIterator selectPivot( const RandomAccessIterator begin,
-                                 const RandomAccessIterator end )
-{
-    RandomAccessIterator p1 = begin;
-    RandomAccessIterator p2 = begin + ( end-begin ) / 2;
-    RandomAccessIterator p3 = end-1;
-    
-    if(*p1 < *p2) {
-        if( *p2 < *p3 ) return p2;
-        else if(*p1 < *p3) return p3;
-        return p1;
-    } else {
-        if( *p1 < *p3 ) return p1;
-        else if(*p2 < *p3) return p3;
-        return p2;
-    }
+RandomAccessIterator selectPivot(const RandomAccessIterator begin,
+        const RandomAccessIterator end) {
+   RandomAccessIterator p1 = begin;
+   RandomAccessIterator p2 = begin + (end - begin) / 2;
+   RandomAccessIterator p3 = end - 1;
+
+   if (*p1 < *p2) {
+      if (*p2 < *p3) return p2;
+      else if (*p1 < *p3) return p3;
+      return p1;
+   } else {
+      if (*p1 < *p3) return p1;
+      else if (*p2 < *p3) return p3;
+      return p2;
+   }
 }
 
 // display
@@ -51,14 +51,13 @@ RandomAccessIterator selectPivot( const RandomAccessIterator begin,
 // NE RIEN MODIFIER DANS CETTE FONCTION
 
 template < typename RandomAccessIterator >
-void display( const RandomAccessIterator begin,
-             const RandomAccessIterator pivot,
-             const RandomAccessIterator end )
-{
-    for(auto it = begin; it<pivot; ++it) cout << *it << " ";
-    cout << "[" << *pivot << "] ";
-    for(auto it = pivot+1; it<end; ++it) cout << *it << " ";
-    cout << endl;
+void display(const RandomAccessIterator begin,
+        const RandomAccessIterator pivot,
+        const RandomAccessIterator end) {
+   for (auto it = begin; it < pivot; ++it) cout << *it << " ";
+   cout << "[" << *pivot << "] ";
+   for (auto it = pivot + 1; it < end; ++it) cout << *it << " ";
+   cout << endl;
 }
 
 // quickSort
@@ -71,10 +70,65 @@ void display( const RandomAccessIterator begin,
 // A COMPLETER
 
 template < typename RandomAccessIterator >
-void quickSort( RandomAccessIterator begin,
-               RandomAccessIterator end )
-{
-    
+RandomAccessIterator partitionner(RandomAccessIterator begin,
+        RandomAccessIterator end) {
+   
+   RandomAccessIterator i = begin-1;
+   RandomAccessIterator j = end;
+   
+   while (1) {
+      do{
+         i++;
+      }while (*i < *end);//Vérifie que les élements à gauche du pivot sont inférieurs
+      do{  
+        j--; 
+      }while (j > begin and *j > *end);//Vérifie que les élements à droite du pivot sont supérieurs
+         
+      if (i >= j)
+         break;
+      swap(*i, *j);
+   }
+   swap(*i, *end);
+   return i;
+}
+
+template < typename RandomAccessIterator >
+void quickSort(RandomAccessIterator begin,
+        RandomAccessIterator end) {
+   
+   RandomAccessIterator i ;
+   RandomAccessIterator j ;
+   RandomAccessIterator hi= end-1;
+
+   
+   if (end <= begin)//Condition d'arret
+      return;
+   
+   RandomAccessIterator pivot = selectPivot(begin, end); //Choisit l'élément pivot
+   swap(*pivot, *hi); //permute l'élement pivot avec le dernier élément de la liste 
+  
+   i = begin-1;
+   j = hi;   
+   while (1) {
+      do{
+         ++i;
+      }while (*i < *hi);/*Vérifie que les élements à 
+                          gauche du pivot sont inférieurs*/
+      do{  
+        --j; 
+      }while (j > begin and *j > *hi);/*Vérifie que les élements 
+                                       à droite du pivot sont supérieurs*/
+         
+      if (i >= j)
+         break;
+      swap(*i, *j);
+   }
+   swap(*i, *hi);//Echange deux élements pointés par i et hi 
+   if(begin != end-1)
+      display(begin, i, end);
+   
+   quickSort(begin,i);
+   quickSort(i+1, end);
 }
 
 
@@ -88,43 +142,43 @@ void quickSort( RandomAccessIterator begin,
 // NE RIEN MODIFIER DANS CETTE FONCTION
 
 int main(int argc, const char * argv[]) {
-    
-    // std::string
-    
-    string s("EXEMPLE_DE_TRI_RAPIDE");
-    cout << s << endl;
-    
-    quickSort(s.begin(),s.end());
-    
-    cout << s << endl;
-    
-    // C array
-    
-    int array[] = { 7, 3, 6, 1, 9, 2, 0, 10, 12, -3 };
-    cout << endl;
-    for(int i : array)
-        cout << i << " ";
-    cout << endl;
-    
-    quickSort(array,array+10);
-    
-    for(int i : array)
-        cout << i << " ";
-    cout << endl;
-    
-    // std::vector
-    
-    vector<double> vd { 0.1, 1.2, 3.5, 1.8, 0.4, 10.2, -0.4, 5.8, 6.9, 12.5, 24.3, 0.6, 12.2, 4.5, 3.1415 };
-    cout << endl;
-    for(double d : vd)
-        cout << d << " ";
-    cout << endl;
-    
-    quickSort(vd.begin(),vd.end());
-    
-    for(double d : vd)
-        cout << d << " ";
-    cout << endl;
-    
-    return 0;
+
+   // std::string
+
+   string s("EXEMPLE_DE_TRI_RAPIDE");
+   cout << s << endl;
+
+   quickSort(s.begin(), s.end());
+
+   cout << s << endl;
+
+   // C array
+
+   int array[] = {7, 3, 6, 1, 9, 2, 0, 10, 12, -3};
+   cout << endl;
+   for (int i : array)
+      cout << i << " ";
+   cout << endl;
+
+   quickSort(array, array + 10);
+
+   for (int i : array)
+      cout << i << " ";
+   cout << endl;
+
+   // std::vector
+
+   vector<double> vd{0.1, 1.2, 3.5, 1.8, 0.4, 10.2, -0.4, 5.8, 6.9, 12.5, 24.3, 0.6, 12.2, 4.5, 3.1415};
+   cout << endl;
+   for (double d : vd)
+      cout << d << " ";
+   cout << endl;
+
+   quickSort(vd.begin(), vd.end());
+
+   for (double d : vd)
+      cout << d << " ";
+   cout << endl;
+
+   return 0;
 }
