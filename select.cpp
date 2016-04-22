@@ -42,6 +42,7 @@ void display( const RandomAccessIterator begin,
 // Effectue le tri par sélection des éléments entre begin
 // et end (non inclus). Doit appeler display() après chaque
 // échange.
+
 template < typename RandomAccessIterator >
 void selectionSort( RandomAccessIterator begin,
                    RandomAccessIterator end )
