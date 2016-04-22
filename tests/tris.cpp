@@ -1,4 +1,9 @@
 /*
+ * ASD : Labo 3
+ * 
+ * Auteurs : Lara Chauffoureaux, Marie Lemdjo, Nathalie Mégevand
+ *
+ * Date : 22.04.2016
  *
  * Fonctions de tris qui vont être utilisées
  * lors de notre test de performance
@@ -24,7 +29,11 @@ void countingSort(RandomAccessIterator begin, RandomAccessIterator end);
 
 
 
-// IMPLEMENTATION
+// IMPLEMENTATION DES TRIS
+
+
+
+
 
 template < typename RandomAccessIterator >
 void countingSort( RandomAccessIterator begin,

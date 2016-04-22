@@ -76,7 +76,7 @@ void countingSort( RandomAccessIterator begin,
 
 // display
 //
-// Affiche les valeur entre begin et end (non inclus)
+// Affiche les valeurs entre begin et end (non inclus)
 // utilisé uniquement par main, pas par vous.
 //
 // NE RIEN MODIFIER A CETTE FONCTION
