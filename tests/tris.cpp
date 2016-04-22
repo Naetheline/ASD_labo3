@@ -2,8 +2,8 @@
  * ASD : Labo 3
  * 
  * Auteurs : Lara Chauffoureaux, Marie Lemdjo, Nathalie Mégevand
- *
  * Date : 22.04.2016
+ * Fichier Source : tris.cpp
  *
  * Fonctions de tris qui vont être utilisées
  * lors de notre test de performance
