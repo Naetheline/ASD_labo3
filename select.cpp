@@ -42,16 +42,29 @@ void display( const RandomAccessIterator begin,
 // Effectue le tri par sélection des éléments entre begin
 // et end (non inclus). Doit appeler display() après chaque
 // échange.
-//
-// A COMPLETER
 
 template < typename RandomAccessIterator >
 void selectionSort( RandomAccessIterator begin,
                    RandomAccessIterator end )
-{
-   
-    // A COMPLETER
-
+{   
+   for(auto i = begin; i < end - 1; i++)
+   {
+      RandomAccessIterator iMin = i;
+      
+      for(auto j = i + 1; j < end; j++)
+      {
+         if(*j < *iMin)
+         {
+            iMin = j;
+         }
+      }
+      if(iMin != i)
+      {
+         swap(*i, *iMin);
+      }
+      //On affiche les deux elements concerne meme si ceux-ci n'ont pas été échanger
+      display(begin, i, iMin, end);  
+   }
 }
 
 // main

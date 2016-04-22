@@ -12,6 +12,7 @@
 #include <climits>
 #include <vector>
 #include <string>
+#include <array>
 
 using namespace std;
 
@@ -33,20 +34,49 @@ template < typename RandomAccessIterator >
 void countingSort( RandomAccessIterator begin,
                   RandomAccessIterator end )
 {
-   
-    // Détermination MIN et MAX
+  auto min = *begin;
+  auto max = *begin;
 
+  // Détermination MIN et MAX
+  for(auto i = begin; i != end; i++)
+    {
+      if(*i < min)
+	{
+	  min = *i;
+	}
+      else if(*i > max)
+	{
+	  max = *i;
+	}
+    }
+  const unsigned int TAILLE = max - min + 1;
+  std::vector<unsigned int> tabCompte;
+  tabCompte.resize(TAILLE);
 
-    // Comptage
+  // Comptage
+    for(auto i = begin; i != end; i++)
+      {
+	tabCompte.at(*i - min)++;
+      }
 
-
-    // Affichage des éléments non vide
-
+   // Tri du tableau Avec affichage simultané
+     unsigned int k = 0;
+     for(unsigned int i = 0; i < TAILLE; i++)
+      {
+	for(unsigned int j = 0; j < tabCompte.at(i); j++)
+         {
+           *(begin + k++) = i + min;
+         }
+	if(tabCompte.at(i) > 0)
+         {
+           std::cout << *(begin + k - 1) << ": " << tabCompte.at(i) << std::endl;
+          }
+      }
 }
 
 // display
 //
-// Affiche les valeur entre begin et end (non inclus)
+// Affiche les valeurs entre begin et end (non inclus)
 // utilisé uniquement par main, pas par vous.
 //
 // NE RIEN MODIFIER A CETTE FONCTION
