@@ -23,7 +23,7 @@ using namespace std;
 
 using time_point  = chrono::high_resolution_clock::time_point;
 // using now() = chrono::high_resolution_clock::now();
-// using nano  = duration_cast<chrono::nanoseconds>;
+// using nano  = chrono::duration_cast<chrono::nanoseconds>;
 
 int main()
 {
@@ -90,7 +90,7 @@ int main()
 	  avgTimeCount +=
 	    chrono::duration_cast<chrono::nanoseconds>(after - before).count(); 
 	}
-      cout << m << "\t" << avgTimeSelct / NB_SIMULATIONS
+      cout << SIZE << "\t" << avgTimeSelct / NB_SIMULATIONS
 	   << "\t" << avgTimeQuick / NB_SIMULATIONS
 	   << "\t" << avgTimeCount / NB_SIMULATIONS << endl;
     }
