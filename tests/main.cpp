@@ -70,12 +70,14 @@ int main()
 	  // Tris
 
 	  // Selection
+	  /* COMMENTE POUR CALCULE DE 10 PUISSANCE 7
 	  before = chrono::high_resolution_clock::now();
 	  selectionSort(vector1.begin(), vector1.end());
 	  after = chrono::high_resolution_clock::now();
 	  avgTimeSelct +=
 	    chrono::duration_cast<chrono::nanoseconds>(after - before).count();
-
+	  */
+	  
 	  // Rapide
 	  before = chrono::high_resolution_clock::now();
 	  quickSort(vector2.begin(), vector2.end());

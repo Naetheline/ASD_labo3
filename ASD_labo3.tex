@@ -59,50 +59,56 @@
 \maketitle
 \thispagestyle{fancy}
 
-\section*{Introduction}
+%\section*{Introduction}
 
 
 \section*{Estimation théorique}
 
-
-
 \subsection*{Tri par sélection}
-
-
+Pour le tri par sélection nous avons une première affectation de iMin dans la boucle extérieur (qui va donc s'exécuter N fois). Puis, probablement une permutation des valeurs de i et iMin.
+La boucle interne parcours le tableau de N à i. Cela revient à faire $ \sum^{N}_{k = 0}{(N-k)} = \frac{N(N+1)}{2} $, donc, les instructions à l'intérieur (une comparaison et éventuellement une affectation) s'exécutent $ \frac{N\up{2} + N}{2} $ fois. Nous avons donc au pire : $ N + N + 2*\frac{N\up{2} + N}{2} = N\up{2} + 3N $
 
 \subsection*{Tri rapide}
 
+Le tri rapide est un algorithme particulier. Son temps d'exécution en moyenne est de $\mathcal{O}(Nlog(N))$ et de $\mathcal{O}(N^2)$ dans le pire des cas(situation d'un tableau trié de façon  inverse). Il n'utilise pas de tableau annexe pour trier, donc il nécessite très peu de place mémoire pour s'exécuter. Néanmoins, c'est un tri instable. De manière plus détaillée, on a Nlog(N) comparaisons, Nlog(N) permutations, 2N appels de la fonction elle-même et N partitionemments.
 
-\subsection*{ Tri par comptage}
 
+\subsection*{Tri par comptage}
+
+Pour le tri par comptage, nous executons une première boucle for parcourant tout le tableau à trier afin de trouver le min et le max, dans laquelle nous n'executons au plus une seule instruction d'effectation et une instruction de comparaison par itération. Puis, nous exécutons une deuxième boulce for parcourant tout le tableau lors de notre phase de comptage. À chaque itération, nous exécuton une incrémentation. Enfin, nous allons replacer chaque élément dans le tableau final, cela revient à parcourir une troisième fois le tableau dans son ensemble, tout en exécutant une instruction par itération. Nous avons donc $2N + N + N = 4N$ instructions pour l'ensemble du tri comptage.
 
 
 \section*{Résultats empiriques}
 
-\begin{tabular}{|l|c|c|c|}
+\begin{tabular}{|l c c c|c c c|}
 \hline
 \textbf{Taille de donnée} & \textbf{Tri par sélection} & \textbf{Tri rapide}&  \textbf{Tri par comptage} \\
-10\up{1} & & &  \\
-10\up{2} & & &  \\
-10\up{3} & & &  \\
-10\up{4} & & &  \\
-10\up{5} & & &  \\
-10\up{6} & & &  \\
-10\up{7} & & &  \\
-
+10\up{1}& 515.2 & 1151.87 & 1424.7  \\
+10\up{2}& 26211.9 & 11587.5 & 4874.43  \\
+10\up{3}& 1.05628e+06  & 87814.7 & 9936.43  \\
+10\up{4}& 5.538e+07 & 530346 & 44343.7  \\
+10\up{5}& 5.54646e+09 & 5.36855e+06 & 402290  \\
+10\up{6}& 5.9372e+11 & 5.53667e+07 & 4.15027e+06  \\
+10\up{7}& NA & 5.8798e+08 & 4.35604e+07  \\
 \hline
-
 \end{tabular}
 
-\noindent\includegraphics[width=400px]{graphiqueResultats}
+\medskip
 
-
+\noindent\includegraphics[width=400px]{tests/graphique}
 
 \subsection*{Discussion des résultats}
+Après avoir lancé les simulations jusqu'à 10\up{6}, nous avons extrapolé nos résultats et obtenu un résultat théorique de 15h de simulation pour le tri par sélection su run tableau de 10\up{7} données. Lancer les 30 simulations nous aurait pris $\sim $ 3 semaines. Nous avons donc exécuté les dernières simulations pour les tris rapide et par comptage seulement.
+
+Le graphique ci-dessus (échelle logarithmique sur les deux axes), rend bien visible la différence de performances entre les algorithme de tris. Le tri par sélection, bien que plus rapide sur des petites tailles de données, devient vite inutilisable pour de plus grands N.
+
+Le tri par comptage quant à lui est très efficace du moment que la taille des tableaux à trié n'est pas trop grande. En effet, ce tri est très rapide, mais demande une grande quantité de mémoire. De plus, ce tri n'est possible que sur des valeurs discrètes.
+
+Le tri rapide est un bon compromis temps-mémoire et peut être utilisé sur toutes les données pouvant être comparées. Il est normale que cet algorithme soit le premier choix pour l'implémentation d'un tri générique. 
 
 
 
-\section*{Conclusion}
+%\section*{Conclusion}
 
 
 \end{document}
