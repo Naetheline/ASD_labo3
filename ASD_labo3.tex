@@ -1,0 +1,108 @@
+\documentclass[11pt]{article}
+ 
+\usepackage[utf8]{inputenc}
+\usepackage[latin1]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{eurosym}
+\usepackage[french]{babel}
+\usepackage{graphicx}
+
+%%% PAGE DIMENSIONS
+\usepackage{geometry} % to change the page dimensions
+\geometry{a4paper} % or letterpaper (US) or a5paper or....
+% \geometry{margin=2in} % for example, change the margins to 2 inches all round
+% \geometry{landscape} % set up the page for landscape
+%   read geometry.pdf for detailed page layout information
+
+%\usepackage{graphicx} % support the \includegraphics command and options
+
+% \usepackage[parfill]{parskip} % Activate to begin paragraphs with an empty line rather than an indent
+
+%%% PACKAGES
+\usepackage{booktabs} % for much better looking tables
+\usepackage{array} % for better arrays (eg matrices) in maths
+\usepackage{paralist} % very flexible & customisable lists (eg. enumerate/itemize, etc.)
+\usepackage{verbatim} % adds environment for commenting out blocks of text & for better verbatim
+\usepackage{subfig} % make it possible to include more than one captioned figure/table in a single float
+% These packages are all incorporated in the memoir class to one degree or another...
+
+
+% MATHS
+\usepackage{amssymb}
+
+
+%%COMMANDES
+\newcommand{\keyword}[1]{\textsc{#1} }
+
+
+%%% HEADERS & FOOTERS
+\usepackage{fancyhdr} % This should be set AFTER setting up the page geometry
+\pagestyle{fancy} % options: empty , plain , fancy
+\renewcommand{\headrulewidth}{1pt} % customise the layout...
+\renewcommand{\footrulewidth}{1pt}
+\lhead{ASD - Labo 3}\chead{}\rhead{N.Mégevand L.Chauffoureaux M. Lemdjo}
+\lfoot{}\cfoot{\thepage}\rfoot{}
+
+
+\title{\vspace{-8mm}\textsc{\huge Algorithmes et structures de données}\\ 
+%\vspace{-4 em}
+ \large{ Laboratoire 3\\}
+\vspace{-1 em}
+}
+\author{Nathalie Mégevand, Lara Chauffoureaux, Marie Lemdjo} 
+\vspace{-1em}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+\maketitle
+\thispagestyle{fancy}
+
+\section*{Introduction}
+
+
+\section*{Estimation théorique}
+
+
+
+\subsection*{Tri par sélection}
+
+
+
+\subsection*{Tri rapide}
+
+
+\subsection*{ Tri par comptage}
+
+
+
+\section*{Résultats empiriques}
+
+\begin{tabular}{|l|c|c|c|}
+\hline
+\textbf{Taille de donnée} & \textbf{Tri par sélection} & \textbf{Tri rapide}&  \textbf{Tri par comptage} \\
+10\up{1} & & &  \\
+10\up{2} & & &  \\
+10\up{3} & & &  \\
+10\up{4} & & &  \\
+10\up{5} & & &  \\
+10\up{6} & & &  \\
+10\up{7} & & &  \\
+
+\hline
+
+\end{tabular}
+
+\noindent\includegraphics[width=400px]{graphiqueResultats}
+
+
+
+\subsection*{Discussion des résultats}
+
+
+
+\section*{Conclusion}
+
+
+\end{document}
